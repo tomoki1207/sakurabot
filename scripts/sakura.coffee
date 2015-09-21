@@ -7,7 +7,7 @@
 
 module.exports = (robot) ->
   
-	// called
+	# called
 	robot.hear /さくら|咲良/i, (msg) ->
 		msg.send msg.random [
 			"なんですか？",
@@ -17,7 +17,7 @@ module.exports = (robot) ->
 			"..."
 		]
 
-	// hungly
+	# hungly
 	robot.hear /(おなか|お腹)すいた|(はら|腹)(へ|減)/i, (msg) ->
 		msg.send msg.random [
 			"ダイエットって終わったんでしたっけ?",
@@ -26,7 +26,7 @@ module.exports = (robot) ->
 			"..."
 		]
 
-	// tired
+	# tired
 	robot.hear /(つか|疲)れた/i, (msg) ->
 		msg.send msg.random [
 			"おつかれさまでした!",
