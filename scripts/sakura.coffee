@@ -5,6 +5,10 @@
 # Special Thanks:
 #	makibot http://sanographix.github.io/makibot/
 
+# ------ import modules starts.
+
+# ------ import modules end.
+
 module.exports = (robot) ->
   
 	# called
@@ -30,7 +34,7 @@ module.exports = (robot) ->
 	robot.hear /(つか|疲)れた/i, (msg) ->
 		msg.send msg.random [
 			"おつかれさまでした!",
-			"しっかりしてください",
+			"大丈夫ですか? しっかりしてください",
 			"24時間稼働している私の前でよく言えますね!^^",
 			"..."
 		]
