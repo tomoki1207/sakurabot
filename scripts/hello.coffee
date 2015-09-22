@@ -15,16 +15,15 @@ module.exports = (robot) ->
 		msg.send msg.random [
 			"日付感覚がなくなっちゃたんですか?",
 			"カレンダー見ろよ^^",
-			"#{moment().locale('ja').format('YYYY年MM月DD日(ddd)')}ですよ",
-			"..."
+			"#{moment().locale('ja').format('YYYY年MM月DD日(ddd)')}ですよ"
 		]
 
 	# time
 	robot.hear /(今)?何時(\?|？)/i, (msg) ->
 		msg.send msg.random [
 			"画面の上か右下見てくださいね^^",
-			"#{moment().locale('ja').format('HH時mm分ss秒')}ですよ",
-			"..."
+			"わかってることわざわざ聞くなんて...",
+			"#{moment().locale('ja').format('HH時mm分ss秒')}ですよ"
 		]
 
 	# morning
@@ -36,8 +35,7 @@ module.exports = (robot) ->
 			msg.send msg.random [
 				"おはようございます!今日もがんばりますよー",
 				"のんきにあいさつしている場合ですか",
-				"朝からご苦労なことですね",
-				"..."
+				"朝からご苦労なことですね"
 			]
 			return
 
@@ -51,16 +49,14 @@ module.exports = (robot) ->
 			msg.send msg.random [
 				"業界人気取りのあいさつとかいいですから^^;",
 				"さっき起きたんですかー?",
-				"お、おう...",
-				"..."
+				"お、おう..."
 			]
 			return
 		if 18 <= hour <= 23
 			msg.send msg.random [
 				"業界人気取りのあいさつとかいいですから^^;",
 				"いくらなんでもこの時間におはようはないでしょ...",
-				"いやいや、おはようて！",
-				"..."
+				"いやいや、おはようて！"
 			]
 
 
@@ -73,8 +69,7 @@ module.exports = (robot) ->
 			msg.send msg.random [
 				"こんにちは! この後もがんばるぞー",
 				"どうもー",
-				"ほんとに元気だけがとりえですね!",
-				"..."
+				"ほんとに元気だけがとりえですね!"
 			]
 			return
 
@@ -88,16 +83,14 @@ module.exports = (robot) ->
 			msg.send msg.random [
 				"こんn...、おはようございます!",
 				"おっと、ちょっと気が早いのでは?",
-				"もう昼気分とは",
-				"..."
+				"もう昼気分とは"
 			]
 			return
 		if 18 <= hour <= 23
 			msg.send msg.random [
 				"もうこんにちはの時間じゃないですよ!",
 				"いくらなんでもこの時間におはようはないでしょ...",
-				"え、もしかしてまだ働いてるんですか...?",
-				"..."
+				"え、もしかしてまだ働いてるんですか...?"
 			]
 
 	# evening
@@ -109,8 +102,7 @@ module.exports = (robot) ->
 			msg.send msg.random [
 				"こんばんは! 今日も一日おつかれさまです",
 				"遊んでないでもう寝ろよ",
-				"こんな時間なのにbotしか話す相手がいないんですか?",
-				"..."
+				"こんな時間なのにbotしか話す相手がいないんですか?"
 			]
 			return
 
@@ -124,14 +116,12 @@ module.exports = (robot) ->
 			msg.send msg.random [
 				"こんb...、おはようございます!",
 				"寝ぼけてないで、もう朝ですよ!",
-				"えっ...徹夜、したの...?",
-				"..."
+				"えっ...徹夜、したの...?"
 			]
 			return
 		if 12 <= hour <= 17
 			msg.send msg.random [
 				"こんばんは? 少しおつかれのようですね",
 				"もう少ししてからのあいさつですよ!",
-				"こんにちは^^",
-				"..."
+				"こんにちは^^"
 			]
