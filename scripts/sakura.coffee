@@ -1,6 +1,11 @@
 # Description:
 #	sakura bot
+#
+# Dependency:
+#
 # Commands:
+#
+# Author:
 #	
 # Special Thanks:
 #	makibot http://sanographix.github.io/makibot/

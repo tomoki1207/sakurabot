@@ -1,6 +1,12 @@
 # Description:
 #	A simple interaction with HTTP Deamon.
 #
+# Dependency:
+#
+# Commands:
+#
+# Author:
+#
 
 # ------ import modules starts.
 

@@ -1,6 +1,11 @@
 # Description:
 #	sakura greeting hello, etc...
+#
+# Dependency:
+#
 # Commands:
+#
+# Author:
 
 # ------ import modules starts.
 
