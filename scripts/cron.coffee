@@ -38,7 +38,10 @@ module.exports = (robot) ->
 			timeZone: TIME_ZONE
 			onTick: 	->
 				robot.http(process.env.HUBOT_URL).get() (err, res, body) ->
-					robot.logger.info "keep alive..."
+					if err == ''
+						robot.logger.info "keep alive..."
+					else
+						robot.logger.error err
 					return
 
 		# Nofify work time is begining.
