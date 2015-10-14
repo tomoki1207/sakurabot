@@ -29,21 +29,6 @@ module.exports = (robot) ->
 			for room in rooms
 				robot.send { room: room }, message
 
-		# Keepalive cron.
-		# note: trivial implement
-		#			because hubot-keepalive does not work sometimes.
-		new cron
-			cronTime:	"0 */10 * * * *"
-			start:		true
-			timeZone: TIME_ZONE
-			onTick: 	->
-				robot.http(process.env.HUBOT_URL).get() (err, res, body) ->
-					if err?
-						robot.logger.error "manual keepalive: #{err}"
-					else
-						robot.logger.info "manual keepalive: #{res.statusCode} #{body}"
-					return
-
 		# Nofify work time is begining.
 		new cron
 			cronTime: "0 0 9 * * 1-5"
