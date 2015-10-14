@@ -43,7 +43,7 @@ module.exports = (robot) ->
 		]
 
   # official URL
-	robot.hear /^今?(何|なに)してる/i, (msg) ->
+	robot.hear /(^(今|いま)?(何|なに)してる|ぐぐたす)/i, (msg) ->
 		msg.send "https://plus.google.com/102808008463301583196/posts"
 
   # lateness
