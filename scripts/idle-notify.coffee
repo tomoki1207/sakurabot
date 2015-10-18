@@ -15,7 +15,7 @@
 module.exports = (robot) ->
 
 	# Send message to all rooms that registered at HUBOT_CHATWORK_ROOMS
-	sendToAllRooms = (message) ->
+  sendToAllRooms = (message) ->
 		reg_rooms = process.env.HUBOT_CHATWORK_ROOMS || ''
 		rooms = reg_rooms.split ','
 		if rooms[0] == ''
@@ -28,12 +28,14 @@ module.exports = (robot) ->
   f = setInterval ->
     return if typeof robot?.send isnt 'function'
     sendToAllRooms "わたしが起きましたよー (roger)"
+    robot.logger.info "hubot wake up!"
     clearInterval f
-  , 1000
+  , 10000
 
   # notify idle starts.
   on_sigterm = ->
     sendToAllRooms "おやすみなさい... (yawn)"
+    robot.logger.info "hubot sleep..."
     setTimeout process.exit, 1000
 
   # overwrite bin/hubot SIGTERM events.
