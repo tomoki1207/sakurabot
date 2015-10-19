@@ -1,5 +1,5 @@
 # Description:
-#  notification before idle / after idle.
+#	notification before idle / after idle.
 #
 # Dependency:
 #
@@ -14,32 +14,32 @@
 
 module.exports = (robot) ->
 
-  # Send message to all rooms that registered at HUBOT_CHATWORK_ROOMS
-  sendToAllRooms = (message) ->
-    reg_rooms = process.env.HUBOT_CHATWORK_ROOMS || ''
-    rooms = reg_rooms.split ','
-    if rooms[0] == ''
-      rooms = []
-    for room in rooms
-      robot.send { room: room }, message
+	# Send message to all rooms that registered at HUBOT_CHATWORK_ROOMS
+	sendToAllRooms = (message) ->
+		reg_rooms = process.env.HUBOT_CHATWORK_ROOMS || ''
+		rooms = reg_rooms.split ','
+		if rooms[0] == ''
+			rooms = []
+		for room in rooms
+			robot.send { room: room }, message
 
-  # notify idle is up
-  # notify after chatwork connected
-  cid = setInterval ->
-    return if typeof robot?.send isnt 'function'
-    sendToAllRooms "わたしが起きましたよー (roger)"
-    robot.logger.info "hubot wake up!"
-    clearInterval cid
-  , 10000
+	# notify idle is up
+	# notify after chatwork connected
+	cid = setInterval ->
+		return if typeof robot?.send isnt 'function'
+		sendToAllRooms "わたしが起きましたよー (roger)"
+		robot.logger.info "hubot wake up!"
+		clearInterval cid
+	, 10000
 
-  # notify idle starts.
-  on_sigterm = ->
-    sendToAllRooms "おやすみなさい... (yawn)"
-    robot.logger.info "hubot sleep..."
-    setTimeout process.exit, 1000
+	# notify idle starts.
+	on_sigterm = ->
+		sendToAllRooms "おやすみなさい... (yawn)"
+		robot.logger.info "hubot sleep..."
+		setTimeout process.exit, 1000
 
-  # overwrite bin/hubot SIGTERM events.
-  if process._events.SIGTERM?
-    process._events.SIGTERM = on_sigterm
-  else
-    process.on 'SIGTERM', on_sigterm
+	# overwrite bin/hubot SIGTERM events.
+	if process._events.SIGTERM?
+		process._events.SIGTERM = on_sigterm
+	else
+		process.on 'SIGTERM', on_sigterm
