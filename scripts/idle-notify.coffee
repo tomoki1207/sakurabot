@@ -1,5 +1,5 @@
 # Description:
-#	notification before idle / after idle.
+#  notification before idle / after idle.
 #
 # Dependency:
 #
@@ -14,22 +14,22 @@
 
 module.exports = (robot) ->
 
-	# Send message to all rooms that registered at HUBOT_CHATWORK_ROOMS
+  # Send message to all rooms that registered at HUBOT_CHATWORK_ROOMS
   sendToAllRooms = (message) ->
-		reg_rooms = process.env.HUBOT_CHATWORK_ROOMS || ''
-		rooms = reg_rooms.split ','
-		if rooms[0] == ''
-			rooms = []
-		for room in rooms
-			robot.send { room: room }, message
+    reg_rooms = process.env.HUBOT_CHATWORK_ROOMS || ''
+    rooms = reg_rooms.split ','
+    if rooms[0] == ''
+      rooms = []
+    for room in rooms
+      robot.send { room: room }, message
 
   # notify idle is up
   # notify after chatwork connected
-  f = setInterval ->
+  cid = setInterval ->
     return if typeof robot?.send isnt 'function'
     sendToAllRooms "わたしが起きましたよー (roger)"
     robot.logger.info "hubot wake up!"
-    clearInterval f
+    clearInterval cid
   , 10000
 
   # notify idle starts.

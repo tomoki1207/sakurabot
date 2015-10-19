@@ -20,35 +20,35 @@ TIME_ZONE = process.env.TZ
 
 module.exports = (robot) ->
 
-		# Send message to all rooms that registered at HUBOT_CHATWORK_ROOMS
-		sendToAllRooms = (message) ->
-			reg_rooms = process.env.HUBOT_CHATWORK_ROOMS || ''
-			rooms = reg_rooms.split ','
-			if rooms[0] == ''
-				rooms = []
-			for room in rooms
-				robot.send { room: room }, message
+  # Send message to all rooms that registered at HUBOT_CHATWORK_ROOMS
+  sendToAllRooms = (message) ->
+    reg_rooms = process.env.HUBOT_CHATWORK_ROOMS || ''
+    rooms = reg_rooms.split ','
+    if rooms[0] == ''
+      rooms = []
+    for room in rooms
+      robot.send { room: room }, message
 
-		# Nofify work time is begining.
-		new cron
-			cronTime: "0 0 9 * * 1-5"
-			start:		true
-			timeZone:	TIME_ZONE
-			onTick:		->
-				sendToAllRooms "始業してるぞ 四の五の言わずに働けや"
+  # Nofify work time is begining.
+  new cron
+    cronTime: "0 0 9 * * 1-5"
+    start:		true
+    timeZone:	TIME_ZONE
+    onTick:		->
+      sendToAllRooms "始業してるぞ 四の五の言わずに働けや"
 
-		# Notify work time is up.
-		new cron
-			cronTime:	"0 0 18 * * 1-5"
-			start:		true
-			timeZone: TIME_ZONE
-			onTick: 	->
-				sendToAllRooms "いつまで働いてんだよ 定時だぞ"
+  # Notify work time is up.
+  new cron
+    cronTime:	"0 0 18 * * 1-5"
+    start:		true
+    timeZone: TIME_ZONE
+    onTick: 	->
+      endToAllRooms "いつまで働いてんだよ 定時だぞ"
 
-		# Notify end of noon break.
-		new cron
-			cronTime: "0 0 13 * * 1-5"
-			start: 		true
-			timeZone: TIME_ZONE
-			onTick: 	->
-				sendToAllRooms "昼は終わりだ 働け社畜ども"
+  # Notify end of noon break.
+  new cron
+    cronTime: "0 0 13 * * 1-5"
+    start: 		true
+    timeZone: TIME_ZONE
+    onTick: 	->
+      sendToAllRooms "昼は終わりだ 働け社畜ども"
