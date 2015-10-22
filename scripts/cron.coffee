@@ -29,26 +29,42 @@ module.exports = (robot) ->
 		for room in rooms
 			robot.send { room: room }, message
 
+# pick message from array
+	random = (items) ->
+		items[ Math.floor(Math.random() * items.length) ]
+
 	# Nofify work time is begining.
 	new cron
-		cronTime: "0 0 9 * * 1-5"
+		cronTime:	"0 0 9 * * 1-5"
 		start:		true
 		timeZone:	TIME_ZONE
 		onTick:		->
-			sendToAllRooms "始業してるぞ 四の五の言わずに働けや"
+			sendToAllRooms random [
+				"あっ始業時間ですよ! :o",
+				"今日も一日頑張りましょうー",
+				"まさかすでに働いていたとかないですよね...?"
+			]
 
 	# Notify work time is up.
 	new cron
 		cronTime:	"0 0 18 * * 1-5"
 		start:		true
-		timeZone: TIME_ZONE
+		timeZone:	TIME_ZONE
 		onTick: 	->
-			sendToAllRooms "いつまで働いてんだよ 定時だぞ"
+			sendToAllRooms random [
+				"定時になりましたよ!",
+				"まだ終わらないんですか? (^^;)",
+				"かえろーかえろー"
+			]
 
 	# Notify end of noon break.
 	new cron
-		cronTime: "0 0 13 * * 1-5"
-		start: 		true
-		timeZone: TIME_ZONE
+		cronTime:	"0 0 13 * * 1-5"
+		start:		true
+		timeZone:	TIME_ZONE
 		onTick: 	->
-			sendToAllRooms "昼は終わりだ 働け社畜ども"
+			sendToAllRooms random [
+				"お昼終わりましたー",
+				"(yamn)",
+				"はいはい再開しますよ!"
+			]
