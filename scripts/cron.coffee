@@ -43,7 +43,7 @@ module.exports = (robot) ->
 		start:		true
 		timeZone: TIME_ZONE
 		onTick: 	->
-			endToAllRooms "いつまで働いてんだよ 定時だぞ"
+			sendToAllRooms "いつまで働いてんだよ 定時だぞ"
 
 	# Notify end of noon break.
 	new cron
