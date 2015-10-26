@@ -65,6 +65,6 @@ module.exports = (robot) ->
 		onTick: 	->
 			sendToAllRooms random [
 				"お昼終わりましたー",
-				"(yamn)",
+				"(yawn)",
 				"はいはい再開しますよ!"
 			]
