@@ -18,9 +18,12 @@ module.exports = (robot) ->
     m = msg.match[1]
     return if m is ''
 
+    d = new Date
+    now = d.getTime()
+
     payload = { utt: m, nickname: msg.message.user.name }
     room_id = msg.message.user.reply_to || msg.message.user.room
-    if pre_context = robot.brain.data.dialogue[room_id]
+    if pre_context = robot.brain.data.dialogue[room_id] and now - pre_context.time > 2 * 60 * 1000
       payload.context = pre_context.context
       payload.mode = pre_context.mode
 
@@ -34,4 +37,4 @@ module.exports = (robot) ->
         else
           data = JSON.parse(body)
           msg.reply data.utt
-          robot.brain.data.dialogue[room_id] = { context: data.context, mode: data.mode }
+          robot.brain.data.dialogue[room_id] = { context: data.context, mode: data.mode, time: now }
