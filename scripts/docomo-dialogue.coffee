@@ -20,13 +20,17 @@ module.exports = (robot) ->
 
     d = new Date
     now = d.getTime()
+    cnt = 0
 
     payload = { utt: m, nickname: msg.message.user.name }
     room_id = msg.message.user.reply_to || msg.message.user.room
     if pre_context = robot.brain.data.dialogue[room_id]
-      if now - pre_context.time > 2 * 60 * 1000
+      cnt = pre_context.count
+      if now - pre_context.time <= 2 * 60 * 1000 and cnt <= 5
         payload.context = pre_context.context
         payload.mode = pre_context.mode
+      else
+        cnt = 0
 
     msg
       .http 'https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue'
@@ -38,4 +42,5 @@ module.exports = (robot) ->
         else
           data = JSON.parse(body)
           msg.reply data.utt
-          robot.brain.data.dialogue[room_id] = { context: data.context, mode: data.mode, time: now }
+          cnt = cnt + 1
+          robot.brain.data.dialogue[room_id] = { context: data.context, mode: data.mode, time: now, count: cnt }
