@@ -23,9 +23,10 @@ module.exports = (robot) ->
 
     payload = { utt: m, nickname: msg.message.user.name }
     room_id = msg.message.user.reply_to || msg.message.user.room
-    if pre_context = robot.brain.data.dialogue[room_id] and now - pre_context.time > 2 * 60 * 1000
-      payload.context = pre_context.context
-      payload.mode = pre_context.mode
+    if pre_context = robot.brain.data.dialogue[room_id]
+      if now - pre_context.time > 2 * 60 * 1000
+        payload.context = pre_context.context
+        payload.mode = pre_context.mode
 
     msg
       .http 'https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue'
