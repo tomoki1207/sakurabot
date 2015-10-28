@@ -14,8 +14,8 @@ module.exports = (robot) ->
   robot.brain.data.dialogue = {}
 
   # reply to=xxxxx or aid=xxxxx
-  robot.hear ///(?:aid\=|to:)#{process.env.HUBOT_SELF_UID}(?:.+)\n(.*)///i, (msg) ->
-    m = msg.match[1]
+  robot.hear ///(?:aid\=|to:)#{process.env.HUBOT_SELF_UID}(.+)\n(.*)///i, (msg) ->
+    m = msg.match[2]
     return if m is ''
 
     d = new Date
@@ -31,6 +31,10 @@ module.exports = (robot) ->
         payload.mode = pre_context.mode
       else
         cnt = 0
+
+    # change mode
+    if /(はん)/.test(msg.match[1])
+      payload.t = 20
 
     msg
       .http 'https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue'
